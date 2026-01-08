@@ -37,7 +37,7 @@ def preprocess_image(image):
     
     return img_tensor
 
-def predict_mask(model,img_tensor,threshold=0.6):
+def predict_mask(model,img_tensor,threshold=0.65):
     with torch.no_grad():
         output=model(img_tensor)
         prob=torch.sigmoid(output)
@@ -80,8 +80,11 @@ if uploaded_file is not None:
 
     st.pyplot(fig)
 
-    if(refined_mask.sum()>0):
+    if(refined_mask.sum()>0.5):
         st.warning("Potential Oil Spill Detected!")
+
+    else:
+        st.success("No Oil Spill Detected.")
 
     st.download_button(
         "Download Predicted Mask",

@@ -5,6 +5,7 @@ import numpy as np
 from PIL import Image
 import matplotlib.pyplot as plt
 import cv2
+import pathlib
 
 st.set_page_config(
     page_title="Oil Spill Segmentation",
